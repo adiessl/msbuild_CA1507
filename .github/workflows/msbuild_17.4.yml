@@ -15,6 +15,9 @@ jobs:
           #vs-version: '[17.4,17.5)'
           msbuild-architecture: x64
           
+      - name: Restore NuGet packages
+        run: msbuild ConsoleApp\ConsoleApp.sln -t:restore -property:Configuration=Release
+          
       - name: Build app for release
         run: msbuild ConsoleApp\ConsoleApp.sln -t:rebuild -property:Configuration=Release
 
