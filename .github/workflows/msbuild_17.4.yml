@@ -1,0 +1,20 @@
+name: MSBuild 17.4
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          vs-version: '[17.4,17.5)'
+          
+      - name: Build app for release
+        run: msbuild ConsoleApp\ConsoleApp.sln -t:rebuild -property:Configuration=Release
+
+    
